@@ -1,0 +1,14 @@
+dwm-vanitygaps-6.2.diff
+dwm-colorbar-6.3.diff
+dwm-statuscmd-20241009-8933ebc.diff
+dwm-swallow-6.3.diff
+dwm-stacker-6.2.diff
+dwm-focusmaster-return-6.2.diff
+dwm-preventfocusshift-20240831-6.5.diff
+dwm-sticky-6.5.diff
+dwm-focusmonmouse-6.2.diff
+dwm-focusfullscreen-20211121-95e7342.diff
+dwm-fixmultimon-6.4.diff
+dwm-restartsig-20180523-6.2.diff
+dwm-spawntag-6.2.diff
+dwm-hide_vacant_tags-6.4.diff

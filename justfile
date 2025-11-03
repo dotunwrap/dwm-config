@@ -1,6 +1,7 @@
 PATCHES_DIR := "./patches"
 SRC_DIR := "./src"
 OUTPUT_DIR := "./src-patched"
+BACKUP_DIR := "./bkp"
 
 patch:
   #!/usr/bin/env bash
@@ -35,3 +36,9 @@ patch:
   rm -f {{OUTPUT_DIR}}/*.orig
 
   cp {{OUTPUT_DIR}}/config.def.h {{OUTPUT_DIR}}/config.def.h.orig
+
+restart:
+  mkdir -p {{BACKUP_DIR}}
+  cp {{OUTPUT_DIR}}/config.def.h {{BACKUP_DIR}}
+  rm -rf {{OUTPUT_DIR}}
+  just patch

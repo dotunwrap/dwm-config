@@ -44,3 +44,11 @@ jobs:
           git checkout ${{ inputs.branch }}
           git tag ${{ inputs.version }}
           git push origin ${{ inputs.version }}
+      - name: Create release
+        run: |
+          gh release create ${{ inputs.version }} \
+            --title "v${{ inputs.version }}" \
+            --generate-notes \
+            ./result/bin/dwm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

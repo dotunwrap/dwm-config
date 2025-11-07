@@ -21,24 +21,22 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
-static const char col_bg[]          = "#282828";
-static const char col_bg2[]         = "#504945";
-static const char col_fg0[]         = "#fbf1c7";
-static const char col_fg3[]         = "#bdae93";
-static const char col_blue[]        = "#458588";
-static const char col_lightblue[]   = "#83a598";
-static const char col_green[]       = "#98971a";
-static const char col_yellow[]      = "#d79921";
-static const char col_orange[]      = "#d65d0e";
+static char normbgcolor[]           = "#282828";
+static char normbordercolor[]       = "#282828";
+static char normfgcolor[]           = "#bdae93";
+static char selfgcolor[]            = "#fbf1c7";
+static char selbordercolor[]        = "#d79921";
+static char selbgcolor[]            = "#d79921";
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_fg3, col_bg, col_bg },
-	[SchemeSel]  = { col_fg0, col_yellow,  col_yellow  },
-	[SchemeStatus]  = { col_fg3, col_bg,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { col_fg0, col_yellow,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-	[SchemeTagsNorm]  = { col_fg3, col_bg,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { col_fg0, col_bg,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-	[SchemeInfoNorm]  = { col_fg3, col_bg,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+   /*                   fg           bg           border   */
+  [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+  [SchemeSel]  = { selbgcolor,  selfgcolor,  selbordercolor  },
+  /* for bar --> {text, background, null} */
+  [SchemeStatus]  = { normfgcolor, normbgcolor,  normbgcolor  }, /* status R */
+  [SchemeTagsSel]  = { normfgcolor, normbgcolor,  normbgcolor  }, /* tag L selected */
+  [SchemeTagsNorm]  = { selbordercolor, normbgcolor,  normbgcolor  }, /* tag L unselected */
+  [SchemeInfoSel]  = { normfgcolor, normbgcolor,  normbgcolor  }, /* info M selected */
+  [SchemeInfoNorm]  = { normfgcolor, normbgcolor,  normbgcolor  }, /* info M unselected */
 };
 
 /* tagging */
@@ -112,7 +110,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_bg, "-nf", col_fg3, "-sb", col_yellow, "-sf", col_fg0, NULL };
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]    = { TERMINAL, NULL };
 static const char *browsercmd[] = { BROWSER, NULL };
 static const char *screenshotcmd[] = { SCREENSHOT_TOOL, "gui", "--clipboard" };
@@ -136,6 +134,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
   { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = browsercmd } },
   { MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotcmd } },
+  { MODKEY|ControlMask,			      XK_backslash, xrdb,			   {.v = NULL } },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	STACKKEYS(MODKEY,                          focus)

@@ -12,3 +12,4 @@ dwm-fixmultimon-6.4.diff
 dwm-restartsig-20180523-6.2.diff
 dwm-spawntag-6.2.diff
 dwm-hide_vacant_tags-6.4.diff
+dwm-xrdb-6.4.diff

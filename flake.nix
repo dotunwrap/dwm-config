@@ -45,31 +45,6 @@
                 license = pkgs.lib.licenses.mit;
               };
             };
-            dmenu = pkgs.stdenv.mkDerivation {
-              pname = "dmenu";
-              version = "5.4";
-              src = ./dmenu/src-patched;
-
-              buildInputs = with pkgs.xorg; [
-                libX11
-                libXft
-                libXinerama
-              ];
-
-              buildPhase = ''
-                make
-              '';
-
-              installPhase = ''
-                mkdir -p $out/bin
-                mv dmenu $out/bin
-              '';
-
-              meta = {
-                description = "Dynamic menu for X";
-                license = pkgs.lib.licenses.mit;
-              };
-            };
             slock = pkgs.stdenv.mkDerivation {
               pname = "slock";
               version = "1.6";
